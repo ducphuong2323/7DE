@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- Trang chủ TutorAIs: nội dung chính + SEO meta, không dùng JavaScript -->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Mô tả hiển thị trên kết quả tìm kiếm (SEO) -->
+    <meta
+      name="description"
+      content="TutorAIs hướng dẫn học sinh sử dụng AI trong học tập đúng cách"
+    />
+    <meta
+      name="keywords"
+      content=" AI học tập, intelligent tutor, học sinh sinh viên"
+    />
+    <meta name="author" content="TutorAIs" />
+    <title>TutorAIs | ứng dụng AI vào học tập và làm việc</title>
+    <!-- Font Inter từ Google Fonts (đã khai báo trong style.css) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Đầu trang: logo + menu. Checkbox + label = menu hamburger mobile (chỉ CSS) -->
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="index.html" class="site-logo" aria-label="Trang chủ TutorAIs">TutorAIs</a>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-hidden="true" />
+        <label for="menu-toggle" class="hamburger" aria-label="Mở menu điều hướng">
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </label>
+
+        <nav class="site-nav" aria-label="Điều hướng chính">
+          <a class="site-nav__link site-nav__link--active" href="index.html">Trang chủ</a>
+          <a class="site-nav__link" href="about.html">Về chúng tôi</a>
+          <a class="site-nav__link" href="contact.html">Liên hệ</a>
+          <a class="site-nav__link" href="AI Tools.html">Công cụ AI</a>
+
+          <a class="btn btn--sm" href="#featured-courses">Bắt Đầu Khám phá</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Nội dung chính: hero, danh mục, khóa học, CTA -->
+    <main>
+      <!-- Hero: tiêu đề lớn + ảnh minh họa -->
+      <section class="hero section">
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <p class="badge">Nền tảng hướng dẫn sử dụng AI trong học tập và làm việc</p>
+            <h1 class="hero__title">
+              Sử dụng AI tinh gọn, nhanh chóng, hiệu quả để học tập và làm việc
+            </h1>
+            <p class="hero__text">
+              TutorAIs cung cấp hướng dẫn dễ hiểu giúp học sinh, sinh viên nhanh chóng hiệu quả ứng dụng AI đúng cách để học tập hiệu quả.
+            </p>
+            <div class="hero__actions">
+              <a class="btn" href="#categories">Bắt đầu tìm hiểu ngay</a>
+            </div>
+          </div>
+          <div class="hero__media">
+            <img
+              src="image/image1.jpg"
+              alt="Học sinh học cách  sử dụng AI học tập hiệu quả"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Danh mục: nền xám nhạt (section--muted), card giới thiệu chủ đề -->
+      <section class="section section--muted" id="categories">
+        <div class="container">
+          <header class="section__head">
+            <p class="section__kicker">Danh mục</p>
+            <h2>Thông tin chuẩn xác và cập nhật liên tục</h2>
+          </header>
+
+          <div class="category-grid">
+            <article class="card card--category">
+              <img
+              src="image/image2.jpg"
+                alt="Ứng dụng AI để làm slide, tạo video và học tập thông minh"
+                class="card__image"
+                loading="lazy"
+              />
+              <div class="card__body">
+                <h3 class="card__title">Ứng Dụng AI</h3>
+                <p class="card__text">
+                  Hướng dẫn sử dụng các AI phổ biến để làm slide, tạo video học tập, tóm tắt bài
+                  nhanh và nâng cao kỹ năng tự học.
+                </p>
+                <a href="#" class="card__link">Khám phá công cụ AI</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Khóa học / nội dung nổi bật: lưới card (courses-grid trong CSS) -->
+      <section class="section" id="featured-courses">
+        <div class="container">
+          <header class="section__head">
+            <p class="section__kicker">Hướng dẫn ứng dụng AI vào học tập làm việc</p>
+            <h2>Nội dung ngắn gọn và dễ hiểu</h2>
+          </header>
+
+          <div class="courses-grid">
+            <article class="card card--course">
+              <img
+                src="image/image3.jpg"
+                alt="Ứng dụng AI để học tập và thuyết trình"
+                class="card__image"
+                loading="lazy"
+              />
+              <div class="card__body">
+                <h3 class="card__title">Dùng AI Làm Slide Và Video Học Tập</h3>
+                <p class="card__meta">50 phút • Cơ bản</p>
+                <p class="card__text">
+                  Quy trình tạo nội dung, viết prompt hiệu quả và kiểm tra độ chính xác khi dùng AI
+                  trong học tập.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA: kêu gọi hành động (nền gradient trong CSS) -->
+      <section class="section section--cta">
+        <div class="container cta">
+          <div class="cta__content">
+            <h2 class="cta__title">Sẵn sàng tìm hiểu AI ứng dụng từ hôm nay? Mong muốn hỗ trợ tư vấn?</h2>
+            <p class="cta__text">
+              Tham gia TutorAIs để xây dựng kỹ năng khai thác AI đúng cách trong học tập và làm việc.
+            </p>
+          </div>
+          <a class="btn btn--light" href="contact.html">Đăng ký tư vấn miễn phí</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Chân trang: bản quyền và mô tả ngắn -->
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>&copy; 2026 TutorAIs. All rights reserved.</p>
+        <p>Giáo dục ứng dụng AI học tập và làm việc cho học sinh, sinh viên Việt Nam.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,461 @@
+/*
+ * style.css — Giao diện TutorAIs
+ * Màu chủ đạo #007bff, font Inter, responsive mobile-first (Flexbox + Grid).
+ * Menu mobile: checkbox + label (không dùng JavaScript).
+ */
+
+/* --- Biến màu / kích thước (dễ đổi theme) --- */
+:root {
+  --color-primary: #007bff;
+  --color-primary-dark: #005ec4;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-bg: #ffffff;
+  --color-bg-soft: #f5f8fc;
+  --color-border: #e5e7eb;
+  --shadow-sm: 0 8px 24px rgba(2, 16, 44, 0.08);
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --container-width: 1120px;
+}
+
+/* --- Reset cơ bản: box-sizing, cuộn mượt --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Typography & nền trang --- */
+body {
+  margin: 0;
+  font-family: "Inter", "Roboto", system-ui, -apple-system, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- Khung nội dung căn giữa, giới hạn độ rộng --- */
+.container {
+  width: min(100% - 2rem, var(--container-width));
+  margin-inline: auto;
+}
+
+/* --- Khoảng cách dọc giữa các section --- */
+.section {
+  padding: 3.75rem 0;
+}
+
+/* Section nền xám nhạt (ví dụ danh mục) */
+.section--muted {
+  background-color: var(--color-bg-soft);
+}
+
+/* Tiêu đề block: kicker + h2 */
+.section__head {
+  margin-bottom: 1.4rem;
+}
+
+.section__head h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  line-height: 1.25;
+}
+
+/* Nhãn nhỏ phía trên tiêu đề section */
+.section__kicker {
+  display: inline-block;
+  margin: 0 0 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: #eaf3ff;
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* --- Header: dính trên cùng khi cuộn --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(8px);
+}
+
+.site-header__inner {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.site-logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+/* Checkbox ẩn: khi checked sẽ mở menu + đổi icon hamburger (bên dưới) */
+.menu-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Nút 3 gạch (mobile) */
+.hamburger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0 11px;
+  cursor: pointer;
+  background: #fff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hamburger:hover {
+  border-color: #bfdcff;
+  box-shadow: 0 6px 14px rgba(0, 123, 255, 0.12);
+}
+
+.hamburger__line {
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Menu: mặc định ẩn (mobile), hiện khi .menu-toggle:checked */
+.site-nav {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.site-nav__link {
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  color: #374151;
+  font-weight: 500;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.site-nav__link:hover {
+  color: var(--color-primary);
+  background-color: #eff6ff;
+}
+
+.site-nav__link--active {
+  color: var(--color-primary);
+  background-color: #edf4ff;
+}
+
+.menu-toggle:checked ~ .site-nav {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Biến hamburger thành dấu X khi menu mở */
+.menu-toggle:checked + .hamburger .hamburger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle:checked + .hamburger .hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle:checked + .hamburger .hamburger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Hero: lưới 1 cột mobile, 2 cột tablet+ --- */
+.hero__grid {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.badge {
+  margin: 0 0 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #eaf3ff;
+  color: var(--color-primary);
+}
+
+.hero__title {
+  margin: 0;
+  font-size: clamp(1.7rem, 4.6vw, 3rem);
+  line-height: 1.16;
+}
+
+.hero__text {
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+}
+
+.hero__actions {
+  margin-top: 1.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.hero__media img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Nút: chính, ghost, nhỏ, nền sáng (CTA) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.74rem 1.15rem;
+  border-radius: 11px;
+  border: 1px solid transparent;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: var(--color-primary-dark);
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.25);
+}
+
+.btn--ghost {
+  background: #fff;
+  color: var(--color-primary);
+  border-color: #cfe3ff;
+}
+
+.btn--ghost:hover {
+  background: #eef5ff;
+  box-shadow: none;
+}
+
+.btn--sm {
+  padding: 0.58rem 0.9rem;
+  font-size: 0.92rem;
+}
+
+.btn--light {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.btn--light:hover {
+  background: #f6f9ff;
+}
+
+/* --- Lưới danh mục & khóa học (1 cột mobile) --- */
+.category-grid,
+.courses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* --- Card: viền, hover nâng nhẹ + đổ bóng --- */
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(17, 24, 39, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.card__body {
+  padding: 1rem;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.card__meta {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.card__text {
+  margin: 0.56rem 0 0;
+  color: var(--color-muted);
+}
+
+.card__link {
+  display: inline-block;
+  margin-top: 0.85rem;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.card__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- CTA: khoảng cách trên + khối gradient --- */
+.section--cta {
+  padding-top: 2.4rem;
+}
+
+.cta {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(140deg, #007bff 0%, #2990ff 100%);
+  color: #fff;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.cta__title {
+  margin: 0;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
+.cta__text {
+  margin: 0.48rem 0 0;
+  opacity: 0.95;
+}
+
+/* --- Footer --- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: 2rem;
+  background: #fbfdff;
+}
+
+.site-footer__inner {
+  min-height: 74px;
+  padding: 1.1rem 0;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.site-footer__inner p {
+  margin: 0.15rem 0;
+  font-size: 0.93rem;
+}
+
+/* --- Tablet: hero 2 cột, lưới 2 cột, CTA ngang --- */
+@media (min-width: 740px) {
+  .hero {
+    padding-top: 4.2rem;
+  }
+
+  .hero__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .cta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.7rem 1.9rem;
+  }
+}
+
+/* --- Desktop: ẩn hamburger, menu nằm ngang, khóa học 3 cột --- */
+@media (min-width: 980px) {
+  .hamburger {
+    display: none;
+  }
+
+  .site-nav {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .site-nav__link {
+    padding: 0.55rem 0.8rem;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
